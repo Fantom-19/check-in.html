@@ -15,7 +15,7 @@
 - Подключены GTM, GA4, Google Ads tag, Meta Pixel (placeholder ID).
 - События: `cta_click`, `form_submit`, `scroll_50`, `scroll_90`.
 - A/B форма 50/50 с фиксацией варианта в `localStorage`.
-- OG-баннер `og-cover.svg` (строго 1200×630, текстовый формат без бинарных файлов).
+- OG-исходник `og-cover.svg` (строго 1200×630, хранится в git как текстовый source), финальный `og-cover.jpg` генерируется при деплое.
 
 ## Локальный запуск
 
@@ -71,7 +71,7 @@ export ALLOWED_ORIGINS="https://waterline-house.example,https://www.waterline-ho
 
 ## Обязательная валидация перед запуском трафика
 
-1. Проверить `og-cover.svg` (строго `1200x630`) и превью в Telegram/WhatsApp/Facebook Debugger.
+1. Проверить `og-cover.svg` (source `1200x630`) и сгенерированный `og-cover.jpg` в Telegram/WhatsApp/Facebook Debugger.
 2. Проверить в real-time события `cta_click`, `form_submit`, `scroll_50`, `scroll_90` в GTM/GA4.
 3. Проверить прием событий в Meta Pixel и Google Ads.
 4. Сверить оффер (цена от 9,5 млн ₽) с фактическими объектами и наполнением.
@@ -100,6 +100,7 @@ bash scripts/render_og.sh og-cover.svg build/og-cover.jpg
 Также добавлен CI job `.github/workflows/render-og.yml`, который автоматически:
 - валидирует `og-cover.svg`,
 - рендерит `build/og-cover.jpg`,
+- проверяет размеры JPG (`1200x630`),
 - публикует JPG как build artifact.
 
 ## API лидов

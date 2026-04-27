@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-INPUT="${1:-og-cover.svg}"
-OUTPUT="${2:-build/og-cover.jpg}"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+
+INPUT="${1:-${ROOT_DIR}/og-cover.svg}"
+OUTPUT="${2:-${ROOT_DIR}/build/og-cover.jpg}"
 WIDTH="${OG_WIDTH:-1200}"
 HEIGHT="${OG_HEIGHT:-630}"
 QUALITY="${OG_QUALITY:-90}"
 
-if [[ ! -f "$INPUT" ]]; then
+if [[ ! -f "${INPUT}" ]]; then
   echo "ERROR: input file not found: $INPUT" >&2
   exit 1
 fi
 
 # Validate SVG dimensions before rendering.
-python scripts/check_og_dimensions.py >/dev/null
+python "${SCRIPT_DIR}/check_og_dimensions.py" >/dev/null
 
 mkdir -p "$(dirname "$OUTPUT")"
 

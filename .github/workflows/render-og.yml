@@ -26,6 +26,11 @@ jobs:
       - name: Render JPG from SVG
         run: bash scripts/render_og.sh og-cover.svg build/og-cover.jpg
 
+      - name: Verify JPG dimensions
+        run: |
+          DIMENSIONS=$(identify -format "%wx%h" build/og-cover.jpg)
+          test "$DIMENSIONS" = "1200x630"
+
       - name: Upload OG JPG artifact
         uses: actions/upload-artifact@v4
         with:
