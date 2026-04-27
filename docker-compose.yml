@@ -1,0 +1,20 @@
+services:
+  waterfront-landing:
+    build: .
+    container_name: waterfront-landing
+    ports:
+      - "8080:8080"
+    environment:
+      - LEAD_WEBHOOK_URL=${LEAD_WEBHOOK_URL:-}
+      - LEAD_LOG_DIR=/app/data
+      - ALLOWED_ORIGINS=${ALLOWED_ORIGINS:-http://localhost:8080}
+      - MAX_REQUESTS_PER_MINUTE_IP=${MAX_REQUESTS_PER_MINUTE_IP:-20}
+      - MAX_LEADS_PER_HOUR_IP=${MAX_LEADS_PER_HOUR_IP:-10}
+      - RECAPTCHA_SECRET=${RECAPTCHA_SECRET:-}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN:-}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID:-}
+      - TELEGRAM_API_BASE=${TELEGRAM_API_BASE:-https://api.telegram.org}
+      - ALERT_EMAIL_WEBHOOK_URL=${ALERT_EMAIL_WEBHOOK_URL:-}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

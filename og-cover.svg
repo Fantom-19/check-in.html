@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Дом у Волги">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#03203b"/>
+      <stop offset="100%" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="230" font-family="Arial, sans-serif" font-size="64" font-weight="700" fill="#ffffff">Дом у Волги</text>
+  <text x="80" y="310" font-family="Arial, sans-serif" font-size="44" fill="#dff6ff">Лаишевский район • от 9,5 млн ₽</text>
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="34" fill="#dff6ff">ИЖС • Газ • Участок от 10 соток</text>
+</svg>
