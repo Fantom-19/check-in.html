@@ -1,0 +1,33 @@
+name: Render OG JPG
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - og-cover.svg
+      - scripts/render_og.sh
+      - scripts/check_og_dimensions.py
+
+jobs:
+  render-og:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install render dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick librsvg2-bin
+
+      - name: Validate OG SVG dimensions
+        run: python scripts/check_og_dimensions.py
+
+      - name: Render JPG from SVG
+        run: bash scripts/render_og.sh og-cover.svg build/og-cover.jpg
+
+      - name: Upload OG JPG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: og-cover-jpg
+          path: build/og-cover.jpg

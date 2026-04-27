@@ -91,6 +91,17 @@ python scripts/smoke_test.py
 python scripts/check_og_dimensions.py
 ```
 
+Рендер JPG из SVG (без хранения бинарника в git):
+
+```bash
+bash scripts/render_og.sh og-cover.svg build/og-cover.jpg
+```
+
+Также добавлен CI job `.github/workflows/render-og.yml`, который автоматически:
+- валидирует `og-cover.svg`,
+- рендерит `build/og-cover.jpg`,
+- публикует JPG как build artifact.
+
 ## API лидов
 
 `POST /api/lead` (JSON)
